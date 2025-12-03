@@ -1,0 +1,119 @@
+/* src/index.css */
+
+/* General layout */
+.dashboard-container {
+  padding: 1.5rem; /* equivalent of Tailwind p-6 */
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.text-xl-bold {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.text-lg-semibold {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Table styling */
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.table th {
+  background-color: #60a5fa;
+  color: white;
+  padding: 0.75rem;
+  text-align: center;       /* center horizontally */
+  vertical-align: middle;   /* center vertically */
+}
+
+/* Table cells */
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;       /* center text like status badge */
+  vertical-align: middle;   /* center vertically */
+}
+
+.table tbody tr:hover {
+  background-color: #dbeafe; /* subtle hover */
+}
+
+.table td span {
+  display: inline-block; /* ensures padding respected */
+  line-height: 1.5;      /* enough height */
+  min-width: 70px;        /* optional: ensures short text like "Paid" fits */
+  text-align: center;     /* center text inside badge */
+}
+
+/* Optional: adjust Paid badge color too */
+.status-paid {
+  background-color: #16a34a;
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  display: inline-block;  /* ensure padding respected */
+}
+
+.status-unpaid {
+  background-color: #ca8a04;
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+}
+
+
+
+/* Chart styling */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .chart-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.chart-box {
+  background-color: #bfdbfe;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+/* Date picker */
+.date-picker-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.date-picker-input {
+  border: 1px solid #d1d5db;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
