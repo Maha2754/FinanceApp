@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import DashboardTable from "./DashboardTable";
 import UnpaidDuesChart from "./UnpaidDuesChart";
 import DateRangePicker from "./DateRangePicker";
 
@@ -84,71 +85,44 @@ function Dashboard({ data }) {
       >
         {/* UNPAID DUES BOX */}
         <div style={boxStyle}>
-          <h3>Unpaid Dues</h3>
-          <table width="100%" border="1" cellPadding="8">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Due Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredUnpaid.map((d, i) => (
-                <tr key={i}>
-                  <td>{d.client.name}</td>
-                  <td>{d.due_amount}</td>
-                  <td>{formatToDDMMYYYY(d.due_date)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <DashboardTable
+            title="Unpaid Dues"
+            data={filteredUnpaid.map((d) => ({
+              id: d.client.id,
+              name: d.client.name,
+              amount: d.due_amount,
+              status: "Unpaid",
+            }))}
+            onRowClick={(row) => alert("Clicked Unpaid: " + row.name)}
+          />
         </div>
 
         {/* RECENT TRANSACTIONS BOX */}
         <div style={boxStyle}>
-          <h3>Recent Transactions</h3>
-          <table width="100%" border="1" cellPadding="8">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTrans.map((t, i) => (
-                <tr key={i}>
-                  <td>{t.name}</td>
-                  <td>{t.amount}</td>
-                  <td>{formatToDDMMYYYY(t.date)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <DashboardTable
+            title="Recent Transactions"
+            data={filteredTrans.map((t, index) => ({
+              id: index,
+              name: t.name,
+              amount: t.amount,
+              status: "Paid",
+            }))}
+            onRowClick={(row) => alert("Transaction: " + row.name)}
+          />
         </div>
 
         {/* RESULTS BOX */}
         <div style={boxStyle}>
-          <h3>Results</h3>
-          <table width="100%" border="1" cellPadding="8">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Dues</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((r, i) => (
-                <tr key={i}>
-                  <td>{r.name}</td>
-                  <td>{r.amount}</td>
-                  <td>{r.dues_unpaid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <DashboardTable
+            title="Results"
+            data={results.map((r, index) => ({
+              id: index,
+              name: r.name,
+              amount: r.amount,
+              status: r.dues_unpaid > 0 ? "Unpaid" : "Paid",
+            }))}
+            onRowClick={(row) => alert("Result: " + row.name)}
+          />
         </div>
 
         {/* CHART BOX */}
